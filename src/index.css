@@ -1,96 +1,172 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600&display=swap');
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* NeoGlass Cyberpunk Design System */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Cyberpunk Base Colors */
+    --background: 240 15% 4%;
+    --background-secondary: 240 20% 6%;
+    --foreground: 180 100% 95%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Glass Panel Colors */
+    --glass: 240 30% 8%;
+    --glass-border: 180 100% 50%;
+    --glass-foreground: 180 100% 95%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    /* Neon Accent Colors */
+    --neon-cyan: 180 100% 50%;
+    --neon-pink: 320 100% 70%;
+    --neon-purple: 270 100% 80%;
+    --neon-blue: 220 100% 60%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary System */
+    --primary: 180 100% 50%;
+    --primary-foreground: 240 15% 4%;
+    --primary-glow: 180 100% 50%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary System */
+    --secondary: 240 30% 12%;
+    --secondary-foreground: 180 100% 90%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted System */
+    --muted: 240 20% 8%;
+    --muted-foreground: 180 30% 70%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent System */
+    --accent: 320 100% 70%;
+    --accent-foreground: 240 15% 4%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Destructive System */
+    --destructive: 0 100% 60%;
+    --destructive-foreground: 180 100% 95%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Border & Input */
+    --border: 240 30% 12%;
+    --input: 240 30% 8%;
+    --ring: 180 100% 50%;
 
-    --radius: 0.5rem;
+    /* Card System */
+    --card: 240 30% 8%;
+    --card-foreground: 180 100% 95%;
 
-    --sidebar-background: 0 0% 98%;
+    /* Popover System */
+    --popover: 240 30% 8%;
+    --popover-foreground: 180 100% 95%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Gradients */
+    --gradient-cyber: linear-gradient(135deg, hsl(180 100% 50% / 0.2), hsl(320 100% 70% / 0.2));
+    --gradient-glass: linear-gradient(135deg, hsl(240 30% 8% / 0.8), hsl(240 30% 12% / 0.6));
+    --gradient-neon: linear-gradient(90deg, hsl(180 100% 50%), hsl(320 100% 70%));
 
-    --sidebar-primary: 240 5.9% 10%;
+    /* Shadows */
+    --shadow-neon: 0 0 20px hsl(180 100% 50% / 0.5);
+    --shadow-pink: 0 0 20px hsl(320 100% 70% / 0.3);
+    --shadow-glass: 0 8px 32px hsl(240 15% 4% / 0.3);
 
-    --sidebar-primary-foreground: 0 0% 98%;
+    /* Animations */
+    --transition-cyber: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-    --sidebar-accent: 240 4.8% 95.9%;
+    --radius: 0.75rem;
+  }
+}
 
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+@layer base {
+  * {
+    @apply border-border;
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    background: 
+      radial-gradient(circle at 20% 50%, hsl(180 100% 50% / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, hsl(320 100% 70% / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 80%, hsl(270 100% 80% / 0.05) 0%, transparent 50%),
+      hsl(var(--background));
+    min-height: 100vh;
+  }
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', monospace;
+    font-weight: 600;
+  }
+}
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+@layer components {
+  .glass-panel {
+    @apply bg-glass/80 border border-glass-border/20 backdrop-blur-md;
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+  .glass-panel:hover {
+    @apply border-glass-border/40;
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      0 0 20px hsl(var(--neon-cyan) / 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: var(--transition-cyber);
+  }
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+  .neon-glow {
+    filter: drop-shadow(0 0 8px hsl(var(--neon-cyan) / 0.6));
+  }
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+  .neon-text {
+    color: hsl(var(--neon-cyan));
+    text-shadow: 
+      0 0 10px hsl(var(--neon-cyan) / 0.5),
+      0 0 20px hsl(var(--neon-cyan) / 0.3);
+  }
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+  .cyber-grid {
+    background-image: 
+      linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+  .scan-lines {
+    position: relative;
+  }
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+  .scan-lines::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      transparent 50%,
+      rgba(0, 255, 255, 0.03) 50%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    animation: scan 0.1s linear infinite;
+  }
+
+  @keyframes scan {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(4px); }
+  }
+
+  .pulse-neon {
+    animation: pulse-neon 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes pulse-neon {
+    from {
+      filter: drop-shadow(0 0 8px hsl(var(--neon-cyan) / 0.6));
+    }
+    to {
+      filter: drop-shadow(0 0 16px hsl(var(--neon-cyan) / 0.8));
+    }
   }
 }
 
